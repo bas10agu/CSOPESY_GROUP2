@@ -8,7 +8,7 @@ void color(int n) {
 }
 
 void menu() {
-    color(13);
+    color(13); 
     cout << R"(
 ===============================================================
  _______  _______  _______  _______  _______  _______  __   __ 
@@ -47,36 +47,29 @@ int main() {
         enter();
         cin >> command;
 
-        if (command == "initialize") {
-            cout << "Initialize command recognized. Doing something." << endl;
-            cout << endl;
-        }
-        else if (command == "screen") {
-            cout << "Screen command recognized. Doing something." << endl;
-            cout << endl;
-        }
-        else if (command == "scheduler-test") {
-            cout << "Scheduler test command recognized. Doing something." << endl;
-            cout << endl;
-        }
-        else if (command == "scheduler-stop") {
-            cout << "Scheduler stop command recognized. Doing something." << endl;
-            cout << endl;
-        }
-        else if (command == "report-util") {
-            cout << "Report util command recognized. Doing something." << endl;
-            cout << endl;
-        }
-        else if (command == "clear") {
-            clear();
-        }
-        else if (command == "exit") {
-            exit(0);
-        }
-        else {
-            cout << "Command not accepted: " << command << endl;
-            cout << endl;
-        }
+    if (command == "initialize") {
+        cout << "Initialize command recognized. Doing something." << endl;
+        cout << endl;
+    } else if (command == "screen") {
+        cout << "Screen command recognized. Doing something." << endl;
+        cout << endl;
+    } else if (command == "scheduler-test") {
+        cout << "Scheduler test command recognized. Doing something." << endl;
+        cout << endl;
+    } else if (command == "scheduler-stop") {
+        cout << "Scheduler stop command recognized. Doing something." << endl;
+        cout << endl;
+    } else if (command == "report-util") {
+        cout << "Report util command recognized. Doing something." << endl;
+        cout << endl;
+    } else if (command == "clear") {
+        clear();
+    } else if (command == "exit") {
+        exit(0);
+    } else {
+        cout << "Command not accepted: " << command << endl;
+        cout << endl;
+    }
 
     }
 
