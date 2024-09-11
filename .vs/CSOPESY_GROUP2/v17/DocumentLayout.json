@@ -1,37 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{266F6D64-83C2-4217-804D-0E60373F1F27}|CSOPESY_GROUP2\\CSOPESY_GROUP2.vcxproj|D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\CSOPESY_GROUP2\\HW2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{266F6D64-83C2-4217-804D-0E60373F1F27}|CSOPESY_GROUP2\\CSOPESY_GROUP2.vcxproj|solutionrelative:CSOPESY_GROUP2\\HW2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HW2.cpp",
-              "DocumentMoniker": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\CSOPESY_GROUP2\\HW2.cpp",
-              "RelativeDocumentMoniker": "CSOPESY_GROUP2\\HW2.cpp",
-              "ToolTip": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\CSOPESY_GROUP2\\HW2.cpp",
-              "RelativeToolTip": "CSOPESY_GROUP2\\HW2.cpp",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAAAFMAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-11T03:26:47.741Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
