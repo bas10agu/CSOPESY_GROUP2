@@ -210,7 +210,7 @@ void readCommand(const string& command) {
     }
 }
 
-void mainCommand(){
+void mainCommandLoop(){
     string command;
 
     while (true) {
@@ -221,6 +221,6 @@ void mainCommand(){
 }
 int main() {
     menu();
-    mainCommand();
+    mainCommandLoop();
     return 0;
 }
