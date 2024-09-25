@@ -100,7 +100,7 @@ void screenCreate(const string& name) {
     }
 
     screens[name] = Screen(name);
-    currentScreen = name; 
+    currentScreen = name;
     displayScreen(screens[name]);
 }
 
@@ -109,7 +109,7 @@ void displayScreen(const Screen& screen) {
     system("cls");
     cout << "Screen Name: " << screen.processName << "\n";
     cout << "Current Line: " << screen.currentLine << " / " << screen.totalLines << "\n";
-    
+
     tm localTime;
     localtime_s(&localTime, &screen.creationTime);
     ostringstream oss;
@@ -210,7 +210,7 @@ void readCommand(const string& command) {
     }
 }
 
-void mainCommandLoop(){
+void mainCommandLoop() {
     string command;
 
     while (true) {

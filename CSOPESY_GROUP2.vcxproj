@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{166261a3-b649-4bd0-8085-e6e5f11463dd}</ProjectGuid>
+    <ProjectGuid>{5e3c5d8a-be0a-476e-aa4c-9964616956b7}</ProjectGuid>
     <RootNamespace>CSOPESYGROUP2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HW2.cpp" />
+    <ClCompile Include="HW3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
