@@ -14,7 +14,7 @@ struct Screen {
     int totalLines;
     time_t creationTime;
     vector<string> outputHistory;
-    int textColor; 
+    int textColor;
 
     Screen() : processName("main"), currentLine(0), totalLines(100), creationTime(time(0)), textColor(7) {} 
 
@@ -29,7 +29,8 @@ unordered_map<string, Screen> screens;
 string currentScreen = "";
 Screen mainMenuScreen;
 
-void setColor(int n);
+
+void color(int n);
 void menu();
 void enter();
 void clear();
@@ -41,13 +42,14 @@ void displayMainMenu();
 void displayScreen(const Screen& screen);
 void displayHistory(const Screen& screen);
 
-void setColor(int n) {
+
+void color(int n) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), n);
 }
 
-// Display Title Main Menu
+// Main Menu
 void menu() {
-    setColor(13);
+    color(13);
     cout << R"(
 ===============================================================
  _______  _______  _______  _______  _______  _______  __   __ 
@@ -63,11 +65,11 @@ HELLO, WELCOME TO GROUP 2'S CSOPESY COMMANDLINE!
 TYPE 'exit' TO QUIT, 'clear' TO CLEAR THE SCREEN
 ===============================================================
     )" << endl;
-    setColor(7);
+    color(7);
 }
 
 void enter() {
-    setColor(7);
+    color(7);
     if (currentScreen.empty()) {
         cout << "Enter a command: ";
     }
@@ -114,7 +116,7 @@ void screenCreate(const string& name, int color = 7) {
     displayScreen(screens[name]);
 }
 
-// Display the screen's history
+// Display Screen History
 void displayHistory(const Screen& screen) {
     for (const string& output : screen.outputHistory) {
         cout << output << endl;
@@ -124,7 +126,7 @@ void displayHistory(const Screen& screen) {
 // Display Screen
 void displayScreen(const Screen& screen) {
     system("cls");
-    setColor(screen.textColor); 
+    color(screen.textColor); 
     cout << "Screen Name: " << screen.processName << "\n";
     cout << "Current Line: " << screen.currentLine << " / " << screen.totalLines << "\n";
 
@@ -134,10 +136,11 @@ void displayScreen(const Screen& screen) {
     oss << put_time(&localTime, "%m/%d/%Y, %I:%M:%S %p");
     cout << "Created At: " << oss.str() << "\n\n";
 
+
     displayHistory(screen);
 }
 
-// Display Existing Screen
+// Display Exisitng Screen
 void screenRestore(const string& name) {
     auto it = screens.find(name);
     if (it == screens.end()) {
@@ -145,15 +148,15 @@ void screenRestore(const string& name) {
 
         if (currentScreen.empty()) {
             mainMenuScreen.addOutput(error);
-            setColor(4); 
+            color(4);
             cout << error;
-            setColor(7); 
+            color(7);
         }
         else {
             screens[currentScreen].addOutput(error);
-            setColor(4); 
+            color(4);
             cout << error;
-            setColor(7); 
+            color(7);
         }
         return;
     }
@@ -162,7 +165,7 @@ void screenRestore(const string& name) {
     displayScreen(it->second);
 }
 
-// List Screens
+// Display All Screens
 void listScreens() {
     if (screens.empty()) {
         cout << "No active screens.\n";
@@ -188,7 +191,7 @@ void handleScreenCommands(const string& input) {
 
     if (command == "screen") {
         if (option == "-s" && !name.empty()) {
-            screenCreate(name); 
+            screenCreate(name);
         }
         else if (option == "-r" && !name.empty()) {
             screenRestore(name);
@@ -199,10 +202,10 @@ void handleScreenCommands(const string& input) {
         else {
             string error = "Invalid screen command.\n\n";
             mainMenuScreen.addOutput(error);
-            setColor(4);
+            color(4);
             cout << error;
 
-            setColor(7); 
+            color(7);
             cout << "  Usage:\n";
             cout << "  screen -s <name> (create new screen)\n";
             cout << "  screen -r <name> (restore screen)\n";
@@ -212,13 +215,13 @@ void handleScreenCommands(const string& input) {
     else {
         string error = "Unknown command. Try again.\n\n";
         mainMenuScreen.addOutput(error);
-        setColor(4);
+        color(4);
         cout << error;
-        setColor(7);
+        color(7);
     }
 }
 
-// Main command handler
+// Main Menu Command
 void readCommand(const string& command) {
     if (currentScreen.empty()) {
         mainMenuScreen.addOutput("Enter a command: " + command);
@@ -239,6 +242,18 @@ void readCommand(const string& command) {
     else if (command.find("screen") == 0) {
         handleScreenCommands(command);
     }
+    else if (command == "initialize") {
+        cout << "Initialize command recognized. Doing something.\n\n";
+    }
+    else if (command == "scheduler-test") {
+        cout << "Scheduler test command recognized. Doing something.\n\n";
+    }
+    else if (command == "scheduler-stop") {
+        cout << "Scheduler stop command recognized. Doing something.\n\n";
+    }
+    else if (command == "report-util") {
+        cout << "Report util command recognized. Doing something.\n\n";
+    }
     else if (command == "clear") {
         clear();
     }
@@ -247,6 +262,7 @@ void readCommand(const string& command) {
     }
 }
 
+// Main command loop
 void mainCommandLoop() {
     clear();
     while (true) {
