@@ -121,7 +121,9 @@ void displayScreen(const Screen& screen) {
 void screenRestore(const string& name) {
     auto it = screens.find(name);
     if (it == screens.end()) {
-        cout << "Screen '" << name << "' does not exist.\n";
+        color(4);
+        cout << "Screen '" << name << "' does not exist.\n\n";
+        color(7);
         return;
     }
 
@@ -164,14 +166,21 @@ void handleScreenCommands(const string& input) {
             listScreens();
         }
         else {
-            cout << "Invalid screen command. Usage:\n";
+            color(4);
+            cout << "Invalid screen command.\n\n";
+
+            color(7);
+            cout << "  Usage:\n";
             cout << "  screen -s <name> (create new screen)\n";
             cout << "  screen -r <name> (restore screen)\n";
-            cout << "  screen -ls (list all screens)\n";
+            cout << "  screen -ls (list all screens)\n\n";
         }
     }
     else {
+        color(4);
         cout << "Unknown command. Type 'screen -ls' for screen commands.\n";
+
+        color(7);
     }
 }
 
@@ -205,7 +214,10 @@ void readCommand(const string& command) {
         clear();
     }
     else {
+        color(4);
         cout << "Command not recognized: " << command << endl;
+
+        color(7);
         displayMainMenu();
     }
 }
