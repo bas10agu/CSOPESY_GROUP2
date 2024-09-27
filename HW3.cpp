@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <vector>
 #include <ctime>
 #include <sstream>
 #include <iomanip>
@@ -12,31 +13,41 @@ struct Screen {
     int currentLine;
     int totalLines;
     time_t creationTime;
+    vector<string> outputHistory;
+    int textColor;
 
-    Screen() : currentLine(0), totalLines(100), creationTime(time(0)) {}
+    Screen() : processName("main"), currentLine(0), totalLines(100), creationTime(time(0)), textColor(7) {} 
 
-    Screen(const string& name) : processName(name), currentLine(0), totalLines(100), creationTime(time(0)) {}
+    Screen(const string& name, int color = 7) : processName(name), currentLine(0), totalLines(100), creationTime(time(0)), textColor(color) {}
+
+    void addOutput(const string& output) {
+        outputHistory.push_back(output);
+    }
 };
 
 unordered_map<string, Screen> screens;
 string currentScreen = "";
+Screen mainMenuScreen;
+
 
 void color(int n);
 void menu();
 void enter();
 void clear();
-void screenCreate(const string& name);
+void screenCreate(const string& name, int color);
 void screenRestore(const string& name);
 void handleScreenCommands(const string& input);
 void listScreens();
 void displayMainMenu();
 void displayScreen(const Screen& screen);
+void displayHistory(const Screen& screen);
+
 
 void color(int n) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), n);
 }
 
-// Display Title Main Menu
+// Main Menu
 void menu() {
     color(13);
     cout << R"(
@@ -54,6 +65,7 @@ HELLO, WELCOME TO GROUP 2'S CSOPESY COMMANDLINE!
 TYPE 'exit' TO QUIT, 'clear' TO CLEAR THE SCREEN
 ===============================================================
     )" << endl;
+    color(7);
 }
 
 void enter() {
@@ -71,6 +83,7 @@ void clear() {
     system("cls");
     if (currentScreen.empty()) {
         menu();
+        displayHistory(mainMenuScreen);
     }
     else {
         displayScreen(screens[currentScreen]);
@@ -93,20 +106,27 @@ void displayMainMenu() {
 }
 
 // Create Screen
-void screenCreate(const string& name) {
+void screenCreate(const string& name, int color = 7) {
     if (screens.find(name) != screens.end()) {
         cout << "Screen with name '" << name << "' already exists.\n";
         return;
     }
-
-    screens[name] = Screen(name);
+    screens[name] = Screen(name, color);
     currentScreen = name;
     displayScreen(screens[name]);
+}
+
+// Display Screen History
+void displayHistory(const Screen& screen) {
+    for (const string& output : screen.outputHistory) {
+        cout << output << endl;
+    }
 }
 
 // Display Screen
 void displayScreen(const Screen& screen) {
     system("cls");
+    color(screen.textColor); 
     cout << "Screen Name: " << screen.processName << "\n";
     cout << "Current Line: " << screen.currentLine << " / " << screen.totalLines << "\n";
 
@@ -115,15 +135,29 @@ void displayScreen(const Screen& screen) {
     ostringstream oss;
     oss << put_time(&localTime, "%m/%d/%Y, %I:%M:%S %p");
     cout << "Created At: " << oss.str() << "\n\n";
+
+
+    displayHistory(screen);
 }
 
-// Display Existing Screen
+// Display Exisitng Screen
 void screenRestore(const string& name) {
     auto it = screens.find(name);
     if (it == screens.end()) {
-        color(4);
-        cout << "Screen '" << name << "' does not exist.\n\n";
-        color(7);
+        string error = "Screen '" + name + "' does not exist.\n";
+
+        if (currentScreen.empty()) {
+            mainMenuScreen.addOutput(error);
+            color(4);
+            cout << error;
+            color(7);
+        }
+        else {
+            screens[currentScreen].addOutput(error);
+            color(4);
+            cout << error;
+            color(7);
+        }
         return;
     }
 
@@ -131,7 +165,7 @@ void screenRestore(const string& name) {
     displayScreen(it->second);
 }
 
-// List Screens
+// Display All Screens
 void listScreens() {
     if (screens.empty()) {
         cout << "No active screens.\n";
@@ -166,8 +200,10 @@ void handleScreenCommands(const string& input) {
             listScreens();
         }
         else {
+            string error = "Invalid screen command.\n\n";
+            mainMenuScreen.addOutput(error);
             color(4);
-            cout << "Invalid screen command.\n\n";
+            cout << error;
 
             color(7);
             cout << "  Usage:\n";
@@ -177,15 +213,23 @@ void handleScreenCommands(const string& input) {
         }
     }
     else {
+        string error = "Unknown command. Try again.\n\n";
+        mainMenuScreen.addOutput(error);
         color(4);
-        cout << "Unknown command. Type 'screen -ls' for screen commands.\n";
-
+        cout << error;
         color(7);
     }
 }
 
-// Main command handler
+// Main Menu Command
 void readCommand(const string& command) {
+    if (currentScreen.empty()) {
+        mainMenuScreen.addOutput("Enter a command: " + command);
+    }
+    else {
+        screens[currentScreen].addOutput("[" + currentScreen + "]$ " + command);
+    }
+
     if (command == "exit") {
         if (!currentScreen.empty()) {
             currentScreen.clear();
@@ -214,23 +258,21 @@ void readCommand(const string& command) {
         clear();
     }
     else {
-        color(4);
-        cout << "Command not recognized: " << command << endl;
-
-        color(7);
-        displayMainMenu();
+        handleScreenCommands(command);
     }
 }
 
+// Main command loop
 void mainCommandLoop() {
-    string command;
-
+    clear();
     while (true) {
         enter();
-        getline(cin, command);
-        readCommand(command);
+        string input;
+        getline(cin, input);
+        readCommand(input);
     }
 }
+
 int main() {
     menu();
     mainCommandLoop();
