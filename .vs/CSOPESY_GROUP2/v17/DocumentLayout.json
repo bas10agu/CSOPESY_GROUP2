@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\",
+  "WorkspaceRootPath": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\HW4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5E3C5D8A-BE0A-476E-AA4C-9964616956B7}|CSOPESY_GROUP2.vcxproj|D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\HW3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5E3C5D8A-BE0A-476E-AA4C-9964616956B7}|CSOPESY_GROUP2.vcxproj|solutionrelative:HW3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5E3C5D8A-BE0A-476E-AA4C-9964616956B7}|CSOPESY_GROUP2.vcxproj|D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\HW4\\Depasucat_HW4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5E3C5D8A-BE0A-476E-AA4C-9964616956B7}|CSOPESY_GROUP2.vcxproj|solutionrelative:Depasucat_HW4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
+              "Title": "Depasucat_HW4.cpp",
+              "DocumentMoniker": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\HW4\\Depasucat_HW4.cpp",
+              "RelativeDocumentMoniker": "Depasucat_HW4.cpp",
+              "ToolTip": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\HW4\\Depasucat_HW4.cpp",
+              "RelativeToolTip": "Depasucat_HW4.cpp",
+              "ViewState": "AgIAAAUBAAAAAAAAAAAswCIBAAAnAAAAAAAAAA==",
+=======
               "Title": "HW3.cpp",
               "DocumentMoniker": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\HW3.cpp",
               "RelativeDocumentMoniker": "HW3.cpp",
               "ToolTip": "D:\\download\\College Life\\3rd Year - 1st term\\CSOPESY\\CSOPESY_GROUP2\\HW3.cpp",
               "RelativeToolTip": "HW3.cpp",
+<<<<<<< HEAD
+              "ViewState": "AgIAAAABAAAAAAAAAAAAABcBAAABAAAAAAAAAA==",
+=======
               "ViewState": "AgIAACQAAAAAAAAAAAAAAD8AAAA/AAAAAAAAAA==",
+>>>>>>> a60e38a14cb149077086136106cc7987a4054f92
+>>>>>>> dbb3cde6f1e78c2e84019356d7fd989c6b86a90b
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-25T14:26:02.45Z",
+              "WhenOpened": "2024-10-02T13:26:13.459Z",
               "EditorCaption": ""
             }
           ]
